@@ -13,19 +13,30 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
+INCLUDEPATH += $$PWD/incl
+
 VPATH += \
 	$$PWD/incl \
 	$$PWD/src \
-	$$PWD/ui
-
-INCLUDEPATH += $$PWD/incl
-
-FORMS += \
-	flightapp.ui
+	$$PWD/resource
 
 HEADERS += \
-	flightapp.hpp
+	singleton.hpp \
+	helpers.hpp \
+	models.hpp \
+	app/flightapp.hpp \
+	app/logwidget.hpp \
+	app/routedesigner.hpp
 
 SOURCES += \
-	flightapp.cpp \
+	helpers.cpp \
+	app/flightapp.cpp \
+	app/logwidget.cpp \
+	app/routedesigner.cpp \
 	main.cpp
+
+FORMS += \
+	test.ui
+
+RESOURCES += \
+	resource/resource.qrc

@@ -1,10 +1,13 @@
 #ifndef COUNTER_HPP
 #define COUNTER_HPP
 
+#include <cstddef>
+using std::size_t;
+
 template<class D>
 struct Counter {
-	inline static int count = 0;
-	static void SetCounter(int c) { count = c; }
+	inline static size_t count = 0;
+	static void SetCounter(size_t c) { count = c; }
 	Counter() { ++count; }
 };
 
