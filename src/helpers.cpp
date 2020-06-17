@@ -1,7 +1,7 @@
 #include "helpers.hpp"
 
 namespace Class {
-	QString name[NUM] = {
+	QStringList name = {
 		"经济舱",
 		"高端经济舱",
 		"商务舱",
@@ -11,7 +11,7 @@ namespace Class {
 
 namespace Server {
 	namespace Meal {
-		QString name[NUM] = {
+		QStringList name = {
 			"无",
 			"早餐",
 			"午餐",

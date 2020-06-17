@@ -34,15 +34,15 @@ FlightApp::FlightApp(QWidget *parent): QMainWindow(parent) {
 		}
 	)");
 
+	tab_widget->addItem(new QListWidgetItem(QIcon(":/icons/help.svg"), "查看日志"));
 	tab_widget->addItem(new QListWidgetItem(QIcon(":/icons/help.svg"), "设计航线"));
 	tab_widget->addItem(new QListWidgetItem(QIcon(":/icons/help.svg"), "管理航班"));
-	tab_widget->addItem(new QListWidgetItem(QIcon(":/icons/help.svg"), "查看日志"));
 	tab_widget->addItem(new QListWidgetItem(QIcon(":/icons/help.svg"), "帮助文档"));
 
 	auto *widgets = new QStackedLayout;
+	widgets->addWidget(LogWidget::init());
 	widgets->addWidget(new RouteDesigner);
 	widgets->addWidget(new QLabel("管理航班"));
-	widgets->addWidget(LogWidget::init());
 	widgets->addWidget(new QLabel("帮助文档"));
 
 	central_layout->addWidget(tab_widget);

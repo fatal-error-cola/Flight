@@ -1,5 +1,8 @@
 <RCC>
-	<qresource prefix="/icons">
-		<file>help.svg</file>
-	</qresource>
+    <qresource prefix="/icons">
+        <file>help.svg</file>
+    </qresource>
+    <qresource prefix="/default">
+        <file>airports.csv</file>
+    </qresource>
 </RCC>

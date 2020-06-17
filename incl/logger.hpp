@@ -11,6 +11,7 @@ class Logger {
 public:
 	explicit Logger(QObject *parent, QString fileName, QPlainTextEdit *editor);
 
+public slots:
 	void write(const QString &text);
 };
 

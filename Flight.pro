@@ -24,12 +24,14 @@ HEADERS += \
 	singleton.hpp \
 	helpers.hpp \
 	models.hpp \
+	container.hpp \
 	app/flightapp.hpp \
 	app/logwidget.hpp \
 	app/routedesigner.hpp
 
 SOURCES += \
 	helpers.cpp \
+	container.cpp \
 	app/flightapp.cpp \
 	app/logwidget.cpp \
 	app/routedesigner.cpp \

@@ -16,14 +16,14 @@ class RouteDesigner: public QWidget {
 	QLineEdit flight;
 	QLineEdit airline;
 	QLineEdit aircraft;
+	QSpinBox repeat;
 	struct {
 		QComboBox airport;
 		QLineEdit terminal;
 		QDateTimeEdit time;
 	} depart, arrive;
-	QSpinBox repeat;
 	struct {
-		QComboBox meal;
+		QCheckBox meal[Server::Meal::NUM];
 		QCheckBox hasWiFi;
 	} server;
 	struct {

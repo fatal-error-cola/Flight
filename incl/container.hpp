@@ -1,14 +1,22 @@
 #ifndef CONTAINER_HPP
 #define CONTAINER_HPP
 
-#include "models.hpp"
-#include "counter.hpp"
+#include <map>
+#include <QString>
+#include <QStandardItemModel>
 #include "singleton.hpp"
 
-class Flights: public Counter<Flights> {
+struct Airport;
+
+class Airports: /*public QAbstractTableModel,*/ public Singleton<Airports> {
+	std::map<QString, Airport> airports;
+
+	Airports();
+
 public:
-	template<typename ...Args>
-	void emplace(Args &&...args) = 0;
+	// int rowCount(const QModelIndex &parent = QModelIndex()) const override;
+	// int columnCount(const QModelIndex &parent = QModelIndex()) const override;
+	// QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
 };
 
 #endif

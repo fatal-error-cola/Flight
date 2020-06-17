@@ -27,7 +27,7 @@ struct FlightInfo {
 		QDateTime time;
 	} depart, arrive;
 	struct {
-		size_t meal;
+		unsigned meal;
 		bool hasWiFi;
 	} server;
 	struct {
