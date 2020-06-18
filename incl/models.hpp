@@ -50,17 +50,18 @@ struct Flight {
 
 struct Order {
 	size_t index;
+	int cost;
 	struct {
-		QString tel;
 		QString pay_handle;
+		QString tel;
 	} customer;
-	std::vector<Flight *> flights;
 	struct Passenger {
 		QString name;
-		QString document_type;
 		QString document;
 	};
-	std::vector<Passenger> passengers;
+	std::vector<Passenger> adults;
+	std::vector<Passenger> children;
+	std::vector<std::pair<Flight *, Class::Type>> flights;
 	bool can_cancel = true;
 };
 

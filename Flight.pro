@@ -1,5 +1,4 @@
-QT += core gui widgets
-Qt += network
+QT += core gui widgets network
 CONFIG += c++17
 
 # The following define makes your compiler emit warnings if you use
@@ -24,14 +23,14 @@ HEADERS += \
 	singleton.hpp \
 	helpers.hpp \
 	models.hpp \
-	container.hpp \
+	containers.hpp \
 	app/flightapp.hpp \
 	app/logwidget.hpp \
 	app/routedesigner.hpp
 
 SOURCES += \
 	helpers.cpp \
-	container.cpp \
+	containers.cpp \
 	app/flightapp.cpp \
 	app/logwidget.cpp \
 	app/routedesigner.cpp \

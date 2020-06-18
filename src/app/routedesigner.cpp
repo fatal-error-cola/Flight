@@ -8,24 +8,46 @@
 #include <QDialogButtonBox>
 #include "helpers.hpp"
 #include "models.hpp"
+#include "containers.hpp"
 using std::size_t;
 
 RouteDesigner::RouteDesigner(QWidget *parent): QWidget(parent) {
 	repeat.setMaximum(999);
 	repeat.setSuffix(" 天");
+
+	depart.airport.setEditable(true);
+	depart.airport.setModel(Airports::getInstance());
+	auto depart_airport_completer = new QCompleter(Airports::getInstance(), &depart.airport);
+	depart_airport_completer->setFilterMode(Qt::MatchContains);
+	depart_airport_completer->setCaseSensitivity(Qt::CaseInsensitive);
+	depart.airport.setCompleter(depart_airport_completer);
+
 	depart.time.setCalendarPopup(true);
 	depart.time.setDisplayFormat("yyyy/MM/dd hh:mm");
 	depart.time.setMinimumDate(QDate::currentDate().addDays(1));
+
+	arrive.airport.setEditable(true);
+	arrive.airport.setModel(Airports::getInstance());
+	auto arrive_airport_completer = new QCompleter(Airports::getInstance(), &arrive.airport);
+	arrive_airport_completer->setFilterMode(Qt::MatchContains);
+	arrive_airport_completer->setCaseSensitivity(Qt::CaseInsensitive);
+	arrive.airport.setCompleter(arrive_airport_completer);
+
 	arrive.time.setCalendarPopup(true);
 	arrive.time.setDisplayFormat("yyyy/MM/dd hh:mm");
 	arrive.time.setMinimumDate(QDate::currentDate().addDays(1));
+
 	for(size_t i = 0; i < Server::Meal::NUM; ++i)
-		server.meal[i].setText(Server::Meal::name[i + 1]);
+		server.meal[i].setText(Server::Meal::name[i]);
+
 	server.hasWiFi.setText("Wi-Fi");
+
 	for(size_t i = 0; i < Class::NUM; ++i) {
-		classes[i].tickets.setMaximum(999);
+		classes[i].tickets.setMaximum(9999);
 		classes[i].cost.setMaximum(99999);
+		classes[i].cost.setSuffix(" 元");
 	}
+
 
 	auto *layout = new QGridLayout(this);
 
@@ -52,7 +74,7 @@ RouteDesigner::RouteDesigner(QWidget *parent): QWidget(parent) {
 		auto *class_box = new QGroupBox(Class::name[i]);
 		class_box->setAlignment(Qt::AlignHCenter);
 		auto *class_layout = new QFormLayout(class_box);
-		class_layout->addRow("座位数：", &classes[i].tickets);
+		class_layout->addRow("座位：", &classes[i].tickets);
 		class_layout->addRow("价格：", &classes[i].cost);
 		classes_layout->addWidget(class_box);
 	}
@@ -62,25 +84,27 @@ RouteDesigner::RouteDesigner(QWidget *parent): QWidget(parent) {
 	button_layout->addItem(new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Minimum));
 	button_layout->addWidget(buttons);
 
-	layout->addWidget(new QLabel("航班号："), 0, 1, Qt::AlignRight | Qt::AlignVCenter);
-	layout->addWidget(&flight, 0, 2, Qt::AlignLeft);
-	layout->addWidget(new QLabel("航司："), 0, 3, Qt::AlignRight | Qt::AlignVCenter);
-	layout->addWidget(&airline, 0, 4, Qt::AlignLeft);
-	layout->addWidget(new QLabel("机型："), 1, 1, Qt::AlignRight | Qt::AlignVCenter);
-	layout->addWidget(&aircraft, 1, 2, Qt::AlignLeft);
-	layout->addWidget(new QLabel("周期："), 1, 3, Qt::AlignRight | Qt::AlignVCenter);
-	layout->addWidget(&repeat, 1, 4, Qt::AlignLeft);
-	layout->addWidget(new QLabel("出发："), 2, 1, Qt::AlignRight | Qt::AlignVCenter);
-	layout->addWidget(depart_box, 2, 2, Qt::AlignLeft);
-	layout->addWidget(new QLabel("到达："), 2, 3, Qt::AlignRight | Qt::AlignVCenter);
-	layout->addWidget(arrive_box, 2, 4, Qt::AlignLeft);
-	layout->addWidget(new QLabel("服务："), 3, 1, Qt::AlignRight | Qt::AlignVCenter);
-	layout->addWidget(server_box, 3, 2, 1, 3, Qt::AlignLeft);
+	auto *first_column = new QFormLayout;
+	first_column->addRow("航班号：", &flight);
+	first_column->addRow("航司：", &airline);
+	first_column->addRow("机型：", &aircraft);
+	first_column->addRow("周期：", &repeat);
+
+	auto *second_column = new QGridLayout;
+	second_column->addWidget(new QLabel("出发："), 0, 0, Qt::AlignRight | Qt::AlignVCenter);
+	second_column->addWidget(depart_box, 0, 1, Qt::AlignLeft);
+	second_column->addWidget(new QLabel("到达："), 1, 0, Qt::AlignRight | Qt::AlignVCenter);
+	second_column->addWidget(arrive_box, 1, 1, Qt::AlignLeft);
+	second_column->addWidget(new QLabel("服务："), 2, 0, Qt::AlignRight | Qt::AlignVCenter);
+	second_column->addWidget(server_box, 2, 1, Qt::AlignLeft);
+
+	layout->addLayout(first_column, 0, 1, Qt::AlignHCenter);
+	layout->addLayout(second_column, 0, 2, Qt::AlignHCenter);
+	layout->addLayout(classes_layout, 1, 1, 1, 2);
 	layout->addItem(new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Minimum), 0, 0, -1, 1);
-	layout->addItem(new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Minimum), 0, 5, -1, 1);
-	layout->addLayout(classes_layout, 4, 1, 1, 4);
-	layout->addItem(new QSpacerItem(0, 0, QSizePolicy::Minimum, QSizePolicy::Expanding), 5, 1, 1, 4);
-	layout->addLayout(button_layout, 6, 1, 1, 4);
+	layout->addItem(new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Minimum), 0, 3, -1, 1);
+	layout->addItem(new QSpacerItem(0, 0, QSizePolicy::Minimum, QSizePolicy::Expanding), 2, 1, 1, 2);
+	layout->addLayout(button_layout, 3, 1, 1, 2);
 }
 
 RouteDesigner::RouteDesigner(const Route &route, QWidget *parent): RouteDesigner(parent) {

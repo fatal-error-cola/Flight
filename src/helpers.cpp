@@ -12,7 +12,6 @@ namespace Class {
 namespace Server {
 	namespace Meal {
 		QStringList name = {
-			"无",
 			"早餐",
 			"午餐",
 			"晚餐",

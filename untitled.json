@@ -1,0 +1,168 @@
+//------------
+// 查询航班
+{
+	"type": 0,
+	"depart": "北京",
+	"arrive": "上海",
+	"time": "2020/09/30",
+	"tickets": {
+		"adult": 1,
+		"children": 0
+	}
+}
+// 返回航班
+[
+	{
+		"flights": [
+			{
+				"index": 363,
+				"flight": "ZH9910",
+				"airline": "CN",
+				"aircraft": "787",
+				"depart": {
+					"airport": "ZBAA",
+					"terminal": "T1航站楼",
+					"time": "2020/09/30 08:20"
+				},
+				"arrive": {
+					"airport": "ZSSS",
+					"terminal": "T4航站楼",
+					"time": "2020/09/30 10:20"
+				},
+				"duration": "2:00",
+				"server": {
+					"meal": ["早餐"],
+					"Wi-Fi": true
+				},
+				"class": [2000, null, null, null]
+			}
+		],
+		"duration": "2:00"
+	},
+	{
+		"flights": [
+			{
+				"index": 279,
+				"flight": "ZH3671",
+				"airline": "CN",
+				"aircraft": "747",
+				"depart": {
+					"airport": "ZBAA",
+					"terminal": "T1航站楼",
+					"time": "2020/09/30 08:20"
+				},
+				"arrive": {
+					"airport": "ZBTJ",
+					"terminal": "T2航站楼",
+					"time": "2020/09/30 09:20"
+				},
+				"duration": "1:00",
+				"server": null,
+				"class": [499, null, null, null]
+			},
+			{
+				"index": 401,
+				"flight": "ZH3671",
+				"airline": "CN",
+				"aircraft": "747",
+				"depart": {
+					"airport": "ZBTJ",
+					"terminal": "T2航站楼",
+					"time": "2020/09/30 10:15"
+				},
+				"arrive": {
+					"airport": "ZSSS",
+					"terminal": "T4航站楼",
+					"time": "2020/09/30 11:50"
+				},
+				"duration": "1:35",
+				"server": null,
+				"class": [800, null, null, null]
+			}
+		],
+		"duration": "03:30"
+	}
+]
+
+
+//------------
+// 支付
+{
+	"type": 1,
+	"pay_handle": "ZFB8739182739",
+	"tel": "13892989298",
+	"flights": [
+		{
+			"index": 279,
+			"class": 0
+		},
+		{
+			"index": 401,
+			"class": 0
+		}
+	],
+	"tickets": {
+		"adult": [
+			{
+				"name": "李华",
+				"document": "20731989138"
+			}
+		],
+		"children": []
+	}
+}
+// 返回
+true
+
+
+//------------
+// 查询订单
+879767867
+//返回
+{
+	"cost": 1299,
+	"tickets": {
+		"adult": 1,
+		"children": 0
+	},
+	"flights": [
+		{
+			"flight": "ZH3671",
+			"airline": "CN",
+			"aircraft": "747",
+			"depart": {
+				"airport": "ZBAA",
+				"terminal": "T1航站楼",
+				"time": "2020/09/30 08:20"
+			},
+			"arrive": {
+				"airport": "ZBTJ",
+				"terminal": "T2航站楼",
+				"time": "2020/09/30 09:20"
+			},
+			"duration": "1:00",
+			"server": null,
+			"class": 0
+		},
+		{
+			"flight": "ZH3671",
+			"airline": "CN",
+			"aircraft": "747",
+			"depart": {
+				"airport": "ZBTJ",
+				"terminal": "T2航站楼",
+				"time": "2020/09/30 10:15"
+			},
+			"arrive": {
+				"airport": "ZSSS",
+				"terminal": "T4航站楼",
+				"time": "2020/09/30 11:50"
+			},
+			"duration": "1:35",
+			"server": null,
+			"class": 0
+		}
+	],
+	"duration": "03:30",
+	"can_cancel": true
+}
