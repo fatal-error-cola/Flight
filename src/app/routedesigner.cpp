@@ -1,17 +1,21 @@
 #include "app/routedesigner.hpp"
 #include <cstddef>
+#include <utility>
+#include <QCompleter>
 #include <QGridLayout>
-#include <QGroupBox>
 #include <QFormLayout>
+#include <QGroupBox>
 #include <QLabel>
 #include <QPushButton>
 #include <QDialogButtonBox>
+#include "app/routewidget.hpp"
 #include "helpers.hpp"
 #include "models.hpp"
 #include "containers.hpp"
 using std::size_t;
 
-RouteDesigner::RouteDesigner(QWidget *parent): QWidget(parent) {
+RouteDesigner::RouteDesigner(Route *route_, QWidget *parent):
+		QWidget(parent), route(route_) {
 	repeat.setMaximum(999);
 	repeat.setSuffix(" 天");
 
@@ -105,22 +109,61 @@ RouteDesigner::RouteDesigner(QWidget *parent): QWidget(parent) {
 	layout->addItem(new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Minimum), 0, 3, -1, 1);
 	layout->addItem(new QSpacerItem(0, 0, QSizePolicy::Minimum, QSizePolicy::Expanding), 2, 1, 1, 2);
 	layout->addLayout(button_layout, 3, 1, 1, 2);
+
+	if(route != nullptr) {
+		flight.setText(route->info.flight);
+		airline.setText(route->info.airline);
+		aircraft.setText(route->info.aircraft);
+		repeat.setValue(route->repeat);
+		depart.airport.setCurrentIndex(route->info.depart.airport->index);
+		depart.terminal.setText(route->info.depart.terminal);
+		depart.time.setDateTime(route->info.depart.time);
+		arrive.airport.setCurrentIndex(route->info.arrive.airport->index);
+		arrive.terminal.setText(route->info.depart.terminal);
+		arrive.time.setDateTime(route->info.depart.time);
+		for(size_t i = 0; i < Server::Meal::NUM; ++i)
+			server.meal[i].setCheckState(route->info.server.meal & 1 << i ? Qt::Checked : Qt::Unchecked);
+		server.hasWiFi.setCheckState(route->info.server.hasWiFi ? Qt::Checked : Qt::Unchecked);
+		for(size_t i = 0; i < Class::NUM; ++i) {
+			classes[i].tickets.setValue(route->info.classes[i].tickets);
+			classes[i].cost.setValue(route->info.classes[i].cost);
+		}
+	}
+
+	connect(buttons, &QDialogButtonBox::rejected, this, &QObject::deleteLater);
+	connect(buttons, &QDialogButtonBox::accepted, this, &RouteDesigner::apply);
 }
 
-RouteDesigner::RouteDesigner(const Route &route, QWidget *parent): RouteDesigner(parent) {
-	flight.setText(route.info.flight);
-	airline.setText(route.info.airline);
-	aircraft.setText(route.info.aircraft);
-	repeat.setValue(route.repeat);
-	depart.terminal.setText(route.info.depart.terminal);
-	depart.time.setDateTime(route.info.depart.time);
-	arrive.terminal.setText(route.info.depart.terminal);
-	arrive.time.setDateTime(route.info.depart.time);
-	for(size_t i = 0; i < Server::Meal::NUM; ++i)
-		server.meal[i].setCheckState(route.info.server.meal & 1 << i ? Qt::Checked : Qt::Unchecked);
-	server.hasWiFi.setCheckState(route.info.server.hasWiFi ? Qt::Checked : Qt::Unchecked);
-	for(size_t i = 0; i < Class::NUM; ++i) {
-		classes[i].tickets.setValue(route.info.classes[i].tickets);
-		classes[i].cost.setValue(route.info.classes[i].cost);
+void RouteDesigner::apply() {
+	bool new_route = route == nullptr;
+	if(new_route) {
+		route = new Route;
+		route->index = Routes::getInstance()->getNewIndex();
 	}
+	route->info.flight = flight.text();
+	route->info.airline = airline.text();
+	route->info.aircraft = aircraft.text();
+	route->repeat = repeat.value();
+	route->info.depart.airport = &Airports::getInstance()->get(depart.airport.currentIndex());
+	route->info.depart.terminal = depart.terminal.text();
+	route->info.depart.time = depart.time.dateTime();
+	route->info.arrive.airport = &Airports::getInstance()->get(arrive.airport.currentIndex());
+	route->info.arrive.terminal = arrive.terminal.text();
+	route->info.arrive.time = arrive.time.dateTime();
+	route->info.server.meal = 0;
+	for(size_t i = 0; i < Server::Meal::NUM; ++i)
+		if(server.meal[i].checkState() == Qt::Checked)
+			route->info.server.meal |= 1 << i;
+	route->info.server.hasWiFi = server.hasWiFi.checkState() == Qt::Checked;
+	for(size_t i = 0; i < Class::NUM; ++i) {
+		route->info.classes[i].tickets = classes[i].tickets.value();
+		route->info.classes[i].cost = classes[i].cost.value();
+	}
+	if(!new_route) emit finished();
+	else {
+		size_t index = route->index;
+		Routes::getInstance()->add(std::move(*route));
+		RouteWidget::getInstance()->menu.insertItem(new RouteMenuItem(index));
+	}
+	deleteLater();
 }

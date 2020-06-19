@@ -13,6 +13,7 @@ struct Route;
 
 class RouteDesigner: public QWidget {
 	Q_OBJECT
+	Route *route;
 	QLineEdit flight;
 	QLineEdit airline;
 	QLineEdit aircraft;
@@ -31,9 +32,14 @@ class RouteDesigner: public QWidget {
 		QSpinBox cost;
 	} classes[Class::NUM];
 
+private slots:
+	void apply();
+
 public:
-	explicit RouteDesigner(QWidget *parent = nullptr);
-	explicit RouteDesigner(const Route &route, QWidget *parent = nullptr);
+	explicit RouteDesigner(Route *route = nullptr, QWidget *parent = nullptr);
+
+signals:
+	void finished();
 };
 
 #endif

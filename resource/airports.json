@@ -1,0 +1,828 @@
+[
+	{
+		"ICAO": "ZBAA",
+		"IATA": "PEK",
+		"name": "北京首都国际机场",
+		"city": "北京",
+		"timezone": "Asia/Shanghai"
+	},
+	{
+		"ICAO": "ZBAD",
+		"IATA": "PKX",
+		"name": "北京大兴国际机场",
+		"city": "北京",
+		"timezone": "Asia/Shanghai"
+	},
+	{
+		"ICAO": "ZBTJ",
+		"IATA": "TSN",
+		"name": "天津滨海国际机场",
+		"city": "天津",
+		"timezone": "Asia/Shanghai"
+	},
+	{
+		"ICAO": "ZSSS",
+		"IATA": "SHA",
+		"name": "上海虹桥国际机场",
+		"city": "上海",
+		"timezone": "Asia/Shanghai"
+	},
+	{
+		"ICAO": "ZSPD",
+		"IATA": "PVG",
+		"name": "上海浦东国际机场",
+		"city": "上海",
+		"timezone": "Asia/Shanghai"
+	},
+	{
+		"ICAO": "ZYCC",
+		"IATA": "CGQ",
+		"name": "长春龙嘉国际机场",
+		"city": "长春",
+		"timezone": "Asia/Shanghai"
+	},
+	{
+		"ICAO": "ZYYJ",
+		"IATA": "YNJ",
+		"name": "延吉朝阳川国际机场",
+		"city": "延吉",
+		"timezone": "Asia/Shanghai"
+	},
+	{
+		"ICAO": "ZYTX",
+		"IATA": "SHE",
+		"name": "沈阳桃仙国际机场",
+		"city": "沈阳",
+		"timezone": "Asia/Shanghai"
+	},
+	{
+		"ICAO": "ZYTL",
+		"IATA": "DLC",
+		"name": "大连周水子国际机场",
+		"city": "大连",
+		"timezone": "Asia/Shanghai"
+	},
+	{
+		"ICAO": "ZYHB",
+		"IATA": "HRB",
+		"name": "哈尔滨太平国际机场",
+		"city": "哈尔滨",
+		"timezone": "Asia/Shanghai"
+	},
+	{
+		"ICAO": "ZYMD",
+		"IATA": "MDG",
+		"name": "牡丹江海浪国际机场",
+		"city": "牡丹江",
+		"timezone": "Asia/Shanghai"
+	},
+	{
+		"ICAO": "ZBSJ",
+		"IATA": "SJW",
+		"name": "石家庄正定国际机场",
+		"city": "石家庄",
+		"timezone": "Asia/Shanghai"
+	},
+	{
+		"ICAO": "ZBYN",
+		"IATA": "TYN",
+		"name": "太原武宿国际机场",
+		"city": "太原",
+		"timezone": "Asia/Shanghai"
+	},
+	{
+		"ICAO": "ZSJN",
+		"IATA": "TNA",
+		"name": "济南遥墙国际机场",
+		"city": "济南",
+		"timezone": "Asia/Shanghai"
+	},
+	{
+		"ICAO": "ZSQD",
+		"IATA": "TAO",
+		"name": "青岛流亭国际机场",
+		"city": "青岛",
+		"timezone": "Asia/Shanghai"
+	},
+	{
+		"ICAO": "ZSXZ",
+		"IATA": "XUZ",
+		"name": "徐州观音国际机场",
+		"city": "徐州",
+		"timezone": "Asia/Shanghai"
+	},
+	{
+		"ICAO": "ZSLY",
+		"IATA": "LYI",
+		"name": "临沂启阳国际机场",
+		"city": "临沂",
+		"timezone": "Asia/Shanghai"
+	},
+	{
+		"ICAO": "ZSYT",
+		"IATA": "YNT",
+		"name": "烟台蓬莱国际机场",
+		"city": "烟台",
+		"timezone": "Asia/Shanghai"
+	},
+	{
+		"ICAO": "ZSWH",
+		"IATA": "WEH",
+		"name": "威海大水泊国际机场",
+		"city": "威海",
+		"timezone": "Asia/Shanghai"
+	},
+	{
+		"ICAO": "ZGGG",
+		"IATA": "CAN",
+		"name": "广州白云国际机场",
+		"city": "广州",
+		"timezone": "Asia/Shanghai"
+	},
+	{
+		"ICAO": "ZGSZ",
+		"IATA": "SZX",
+		"name": "深圳宝安国际机场",
+		"city": "深圳",
+		"timezone": "Asia/Shanghai"
+	},
+	{
+		"ICAO": "ZGOW",
+		"IATA": "SWA",
+		"name": "揭阳潮汕国际机场",
+		"city": "揭阳",
+		"timezone": "Asia/Shanghai"
+	},
+	{
+		"ICAO": "ZSFZ",
+		"IATA": "FOC",
+		"name": "福州长乐国际机场",
+		"city": "福州",
+		"timezone": "Asia/Shanghai"
+	},
+	{
+		"ICAO": "ZSAM",
+		"IATA": "XMN",
+		"name": "厦门高崎国际机场",
+		"city": "厦门",
+		"timezone": "Asia/Shanghai"
+	},
+	{
+		"ICAO": "ZSQZ",
+		"IATA": "JJN",
+		"name": "泉州晋江国际机场",
+		"city": "泉州",
+		"timezone": "Asia/Shanghai"
+	},
+	{
+		"ICAO": "ZSHC",
+		"IATA": "HGH",
+		"name": "杭州萧山国际机场",
+		"city": "杭州",
+		"timezone": "Asia/Shanghai"
+	},
+	{
+		"ICAO": "ZSNB",
+		"IATA": "NGB",
+		"name": "宁波栎社国际机场",
+		"city": "宁波",
+		"timezone": "Asia/Shanghai"
+	},
+	{
+		"ICAO": "ZSWZ",
+		"IATA": "WNZ",
+		"name": "温州龙湾国际机场",
+		"city": "温州",
+		"timezone": "Asia/Shanghai"
+	},
+	{
+		"ICAO": "ZSCN",
+		"IATA": "KHN",
+		"name": "南昌昌北国际机场",
+		"city": "南昌",
+		"timezone": "Asia/Shanghai"
+	},
+	{
+		"ICAO": "ZLXY",
+		"IATA": "XIY",
+		"name": "西安咸阳国际机场",
+		"city": "西安",
+		"timezone": "Asia/Shanghai"
+	},
+	{
+		"ICAO": "ZSNJ",
+		"IATA": "NKG",
+		"name": "南京禄口国际机场",
+		"city": "南京",
+		"timezone": "Asia/Shanghai"
+	},
+	{
+		"ICAO": "ZSWX",
+		"IATA": "WUX",
+		"name": "苏南硕放国际机场",
+		"city": "无锡",
+		"timezone": "Asia/Shanghai"
+	},
+	{
+		"ICAO": "ZSCG",
+		"IATA": "CZX",
+		"name": "常州奔牛国际机场",
+		"city": "常州",
+		"timezone": "Asia/Shanghai"
+	},
+	{
+		"ICAO": "ZSYA",
+		"IATA": "YTY",
+		"name": "扬州泰州国际机场",
+		"city": "扬州",
+		"timezone": "Asia/Shanghai"
+	},
+	{
+		"ICAO": "ZSNT",
+		"IATA": "NTG",
+		"name": "南通兴东国际机场",
+		"city": "南通",
+		"timezone": "Asia/Shanghai"
+	},
+	{
+		"ICAO": "ZSYN",
+		"IATA": "YNZ",
+		"name": "盐城南洋国际机场",
+		"city": "盐城",
+		"timezone": "Asia/Shanghai"
+	},
+	{
+		"ICAO": "ZSOF",
+		"IATA": "HFE",
+		"name": "合肥新桥国际机场",
+		"city": "合肥",
+		"timezone": "Asia/Shanghai"
+	},
+	{
+		"ICAO": "ZSTX",
+		"IATA": "TXN",
+		"name": "黄山屯溪国际机场",
+		"city": "黄山",
+		"timezone": "Asia/Shanghai"
+	},
+	{
+		"ICAO": "ZGHA",
+		"IATA": "CSX",
+		"name": "长沙黄花国际机场",
+		"city": "长沙",
+		"timezone": "Asia/Shanghai"
+	},
+	{
+		"ICAO": "ZHCC",
+		"IATA": "CGO",
+		"name": "郑州新郑国际机场",
+		"city": "郑州",
+		"timezone": "Asia/Shanghai"
+	},
+	{
+		"ICAO": "ZHHH",
+		"IATA": "WUH",
+		"name": "武汉天河国际机场",
+		"city": "武汉",
+		"timezone": "Asia/Shanghai"
+	},
+	{
+		"ICAO": "ZUCK",
+		"IATA": "CKG",
+		"name": "重庆江北国际机场",
+		"city": "重庆",
+		"timezone": "Asia/Shanghai"
+	},
+	{
+		"ICAO": "ZUUU",
+		"IATA": "CTU",
+		"name": "成都双流国际机场",
+		"city": "成都",
+		"timezone": "Asia/Shanghai"
+	},
+	{
+		"ICAO": "ZGDY",
+		"IATA": "DYG",
+		"name": "张家界荷花国际机场",
+		"city": "张家界",
+		"timezone": "Asia/Shanghai"
+	},
+	{
+		"ICAO": "ZJHK",
+		"IATA": "HAK",
+		"name": "海口美兰国际机场",
+		"city": "海口",
+		"timezone": "Asia/Shanghai"
+	},
+	{
+		"ICAO": "ZJSY",
+		"IATA": "SYX",
+		"name": "三亚凤凰国际机场",
+		"city": "三亚",
+		"timezone": "Asia/Shanghai"
+	},
+	{
+		"ICAO": "ZUGY",
+		"IATA": "KWE",
+		"name": "贵阳龙洞堡国际机场",
+		"city": "贵阳",
+		"timezone": "Asia/Shanghai"
+	},
+	{
+		"ICAO": "ZPPP",
+		"IATA": "KMG",
+		"name": "昆明长水国际机场",
+		"city": "昆明",
+		"timezone": "Asia/Shanghai"
+	},
+	{
+		"ICAO": "ZPJH",
+		"IATA": "JHG",
+		"name": "西双版纳嘎洒国际机场",
+		"city": "西双版纳",
+		"timezone": "Asia/Shanghai"
+	},
+	{
+		"ICAO": "ZPLJ",
+		"IATA": "LJG",
+		"name": "丽江三义国际机场",
+		"city": "丽江",
+		"timezone": "Asia/Shanghai"
+	},
+	{
+		"ICAO": "ZLLL",
+		"IATA": "LHW",
+		"name": "兰州中川国际机场",
+		"city": "兰州",
+		"timezone": "Asia/Shanghai"
+	},
+	{
+		"ICAO": "ZLXN",
+		"IATA": "XNN",
+		"name": "西宁曹家堡国际机场",
+		"city": "西宁",
+		"timezone": "Asia/Shanghai"
+	},
+	{
+		"ICAO": "ZGNN",
+		"IATA": "NNG",
+		"name": "南宁吴圩国际机场",
+		"city": "南宁",
+		"timezone": "Asia/Shanghai"
+	},
+	{
+		"ICAO": "ZGKL",
+		"IATA": "KWL",
+		"name": "桂林两江国际机场",
+		"city": "桂林",
+		"timezone": "Asia/Shanghai"
+	},
+	{
+		"ICAO": "ZLIC",
+		"IATA": "INC",
+		"name": "银川河东国际机场",
+		"city": "银川",
+		"timezone": "Asia/Shanghai"
+	},
+	{
+		"ICAO": "ZWWW",
+		"IATA": "URC",
+		"name": "乌鲁木齐地窝堡国际机场",
+		"city": "乌鲁木齐",
+		"timezone": "Asia/Shanghai"
+	},
+	{
+		"ICAO": "ZBHH",
+		"IATA": "HET",
+		"name": "呼和浩特白塔国际机场",
+		"city": "呼和浩特",
+		"timezone": "Asia/Shanghai"
+	},
+	{
+		"ICAO": "ZBDS",
+		"IATA": "DSN",
+		"name": "鄂尔多斯伊金霍洛国际机场",
+		"city": "鄂尔多斯",
+		"timezone": "Asia/Shanghai"
+	},
+	{
+		"ICAO": "VHHH",
+		"IATA": "HKG",
+		"name": "香港国际机场",
+		"city": "香港",
+		"timezone": "Asia/Hong_Kong"
+	},
+	{
+		"ICAO": "VMMC",
+		"IATA": "MFM",
+		"name": "澳门国际机场",
+		"city": "澳门",
+		"timezone": "Asia/Macau"
+	},
+	{
+		"ICAO": "RCTP",
+		"IATA": "TPE",
+		"name": "桃园国际机场",
+		"city": "桃园",
+		"timezone": "Asia/Taipei"
+	},
+	{
+		"ICAO": "RCSS",
+		"IATA": "TSA",
+		"name": "台北松山国际机场",
+		"city": "台北",
+		"timezone": "Asia/Taipei"
+	},
+	{
+		"ICAO": "RCKH",
+		"IATA": "KHH",
+		"name": "高雄国际机场",
+		"city": "高雄",
+		"timezone": "Asia/Taipei"
+	},
+	{
+		"ICAO": "RCMQ",
+		"IATA": "RMQ",
+		"name": "台中国际机场",
+		"city": "台中",
+		"timezone": "Asia/Taipei"
+	},
+	{
+		"ICAO": "RJAA",
+		"IATA": "NRT",
+		"name": "成田国际机场",
+		"city": "日本东京",
+		"timezone": "Asia/Tokyo"
+	},
+	{
+		"ICAO": "RJTT",
+		"IATA": "HND",
+		"name": "东京国际机场",
+		"city": "日本东京",
+		"timezone": "Asia/Tokyo"
+	},
+	{
+		"ICAO": "RJBB",
+		"IATA": "KIX",
+		"name": "关西国际机场",
+		"city": "日本大阪",
+		"timezone": "Asia/Tokyo"
+	},
+	{
+		"ICAO": "RJGG",
+		"IATA": "NGO",
+		"name": "中部国际机场",
+		"city": "日本名古屋",
+		"timezone": "Asia/Tokyo"
+	},
+	{
+		"ICAO": "RJCC",
+		"IATA": "CTS",
+		"name": "新千岁机场",
+		"city": "日本北海道",
+		"timezone": "Asia/Tokyo"
+	},
+	{
+		"ICAO": "RJFF",
+		"IATA": "FUK",
+		"name": "福冈机场",
+		"city": "日本福冈",
+		"timezone": "Asia/Tokyo"
+	},
+	{
+		"ICAO": "RKSI",
+		"IATA": "ICN",
+		"name": "仁川国际机场",
+		"city": "韩国首尔",
+		"timezone": "Asia/Seoul"
+	},
+	{
+		"ICAO": "RKSS",
+		"IATA": "GMP",
+		"name": "金浦国际机场",
+		"city": "韩国首尔",
+		"timezone": "Asia/Seoul"
+	},
+	{
+		"ICAO": "RKTN",
+		"IATA": "TAE",
+		"name": "大邱国际机场",
+		"city": "韩国大邱",
+		"timezone": "Asia/Seoul"
+	},
+	{
+		"ICAO": "RKPK",
+		"IATA": "PUS",
+		"name": "金海国际机场",
+		"city": "韩国釜山",
+		"timezone": "Asia/Seoul"
+	},
+	{
+		"ICAO": "RKPC",
+		"IATA": "CJU",
+		"name": "济州国际机场",
+		"city": "韩国济州",
+		"timezone": "Asia/Seoul"
+	},
+	{
+		"ICAO": "RKNY",
+		"IATA": "YNY",
+		"name": "襄阳国际机场",
+		"city": "韩国襄阳",
+		"timezone": "Asia/Seoul"
+	},
+	{
+		"ICAO": "ZKPY",
+		"IATA": "FNJ",
+		"name": "平壤顺安国际机场",
+		"city": "朝鲜平壤",
+		"timezone": "Asia/Pyongyang"
+	},
+	{
+		"ICAO": "KORD",
+		"IATA": "ORD",
+		"name": "芝加哥奥黑尔国际机场",
+		"city": "美国芝加哥",
+		"timezone": "America/Chicago"
+	},
+	{
+		"ICAO": "KATL",
+		"IATA": "ATL",
+		"name": "亚特兰大国际机场",
+		"city": "美国亚特兰大",
+		"timezone": "America/New_York"
+	},
+	{
+		"ICAO": "KLAX",
+		"IATA": "LAX",
+		"name": "洛杉矶国际机场",
+		"city": "美国洛杉矶",
+		"timezone": "America/Los_Angeles"
+	},
+	{
+		"ICAO": "KSFO",
+		"IATA": "SFO",
+		"name": "旧金山国际机场",
+		"city": "美国旧金山",
+		"timezone": "America/Los_Angeles"
+	},
+	{
+		"ICAO": "KJFK",
+		"IATA": "JFK",
+		"name": "肯尼迪国际机场",
+		"city": "美国纽约",
+		"timezone": "America/New_York"
+	},
+	{
+		"ICAO": "KIAD",
+		"IATA": "IAD",
+		"name": "华盛顿杜勒斯国际机场",
+		"city": "美国华盛顿特区",
+		"timezone": "America/New_York"
+	},
+	{
+		"ICAO": "KPHX",
+		"IATA": "PHX",
+		"name": "凤凰城天港国际机场",
+		"city": "美国凤凰城",
+		"timezone": "America/Phoenix"
+	},
+	{
+		"ICAO": "KIAH",
+		"IATA": "IAH",
+		"name": "休斯敦乔治·布什洲际机场",
+		"city": "美国休斯敦",
+		"timezone": "America/Chicago"
+	},
+	{
+		"ICAO": "KDEN",
+		"IATA": "DEN",
+		"name": "丹佛国际机场",
+		"city": "美国丹佛",
+		"timezone": "America/Denver"
+	},
+	{
+		"ICAO": "KPHL",
+		"IATA": "PHL",
+		"name": "费城国际机场",
+		"city": "美国费城",
+		"timezone": "America/New_York"
+	},
+	{
+		"ICAO": "KDFW",
+		"IATA": "DFW",
+		"name": "达拉斯—沃斯堡国际机场",
+		"city": "美国达拉斯—沃斯堡",
+		"timezone": "America/Chicago"
+	},
+	{
+		"ICAO": "KPDX",
+		"IATA": "PDX",
+		"name": "波特兰国际机场",
+		"city": "美国波特兰",
+		"timezone": "America/Los_Angeles"
+	},
+	{
+		"ICAO": "KSEA",
+		"IATA": "SEA",
+		"name": "西雅图国际机场",
+		"city": "美国西雅图",
+		"timezone": "America/Los_Angeles"
+	},
+	{
+		"ICAO": "KCLT",
+		"IATA": "CLT",
+		"name": "夏洛特道格拉斯国际机场",
+		"city": "美国夏洛特",
+		"timezone": "America/New_York"
+	},
+	{
+		"ICAO": "PHNL",
+		"IATA": "HNL",
+		"name": "檀香山国际机场",
+		"city": "美国夏威夷檀香山",
+		"timezone": "Pacific/Honolulu"
+	},
+	{
+		"ICAO": "KMCO",
+		"IATA": "MCO",
+		"name": "奥兰多国际机场",
+		"city": "美国奥兰多",
+		"timezone": "America/New_York"
+	},
+	{
+		"ICAO": "KSLC",
+		"IATA": "SLC",
+		"name": "盐湖城国际机场",
+		"city": "美国盐湖城",
+		"timezone": "America/Denver"
+	},
+	{
+		"ICAO": "KBOS",
+		"IATA": "BOS",
+		"name": "波士顿洛根国际机场",
+		"city": "美国波士顿",
+		"timezone": "America/New_York"
+	},
+	{
+		"ICAO": "CYYZ",
+		"IATA": "YYZ",
+		"name": "多伦多皮尔逊国际机场",
+		"city": "加拿大多伦多",
+		"timezone": "America/Toronto"
+	},
+	{
+		"ICAO": "CYVR",
+		"IATA": "YVR",
+		"name": "温哥华国际机场",
+		"city": "加拿大温哥华",
+		"timezone": "America/Vancouver"
+	},
+	{
+		"ICAO": "CYUL",
+		"IATA": "YUL",
+		"name": "蒙特利尔特鲁多国际机场",
+		"city": "加拿大多佛尔",
+		"timezone": "America/Toronto"
+	},
+	{
+		"ICAO": "EGLL",
+		"IATA": "LHR",
+		"name": "伦敦希斯罗机场",
+		"city": "英国伦敦",
+		"timezone": "Europe/London"
+	},
+	{
+		"ICAO": "EIDW",
+		"IATA": "DUB",
+		"name": "都柏林国际机场",
+		"city": "爱尔兰都柏林",
+		"timezone": "Europe/Dublin"
+	},
+	{
+		"ICAO": "LFPG",
+		"IATA": "CDG",
+		"name": "巴黎夏尔·戴高乐机场",
+		"city": "法国巴黎",
+		"timezone": "Europe/Paris"
+	},
+	{
+		"ICAO": "EDDF",
+		"IATA": "FRA",
+		"name": "法兰克福莱茵—美茵国际机场",
+		"city": "德国法兰克福",
+		"timezone": "Europe/Berlin"
+	},
+	{
+		"ICAO": "EDDM",
+		"IATA": "MUC",
+		"name": "慕尼黑国际机场",
+		"city": "德国慕尼黑",
+		"timezone": "Europe/Berlin"
+	},
+	{
+		"ICAO": "EHAM",
+		"IATA": "AMS",
+		"name": "阿姆斯特丹史基浦机场",
+		"city": "荷兰阿姆斯特丹",
+		"timezone": "Europe/Amsterdam"
+	},
+	{
+		"ICAO": "LSZH",
+		"IATA": "ZRH",
+		"name": "苏黎世国际机场",
+		"city": "瑞士苏黎世",
+		"timezone": "Europe/Zurich"
+	},
+	{
+		"ICAO": "LEMD",
+		"IATA": "MAD",
+		"name": "马德里巴拉哈斯国际机场",
+		"city": "西班牙马德里",
+		"timezone": "Europe/Madrid"
+	},
+	{
+		"ICAO": "LIRF",
+		"IATA": "FCO",
+		"name": "罗马菲乌米奇诺国际机场",
+		"city": "意大利罗马",
+		"timezone": "Europe/Rome"
+	},
+	{
+		"ICAO": "LIMC",
+		"IATA": "MXP",
+		"name": "米兰马尔彭萨国际机场",
+		"city": "意大利米兰",
+		"timezone": "Europe/Rome"
+	},
+	{
+		"ICAO": "WSSS",
+		"IATA": "SIN",
+		"name": "新加坡樟宜机场",
+		"city": "新加坡",
+		"timezone": "Asia/Singapore"
+	},
+	{
+		"ICAO": "WMKK",
+		"IATA": "KUL",
+		"name": "吉隆坡国际机场",
+		"city": "马来西亚吉隆坡",
+		"timezone": "Asia/Kuala_Lumpur"
+	},
+	{
+		"ICAO": "VTBS",
+		"IATA": "BKK",
+		"name": "素万那普国际机场",
+		"city": "泰国曼谷",
+		"timezone": "Asia/Bangkok"
+	},
+	{
+		"ICAO": "VABB",
+		"IATA": "BOM",
+		"name": "孟买国际机场",
+		"city": "印度孟买",
+		"timezone": "Asia/Kolkata"
+	},
+	{
+		"ICAO": "VVTS",
+		"IATA": "SGN",
+		"name": "新山一国际机场",
+		"city": "越南胡志明市",
+		"timezone": "Asia/Ho_Chi_Minh"
+	},
+	{
+		"ICAO": "WIII",
+		"IATA": "CGK",
+		"name": "雅加达苏加诺—哈达国际机场",
+		"city": "印尼雅加达",
+		"timezone": "Asia/Jakarta"
+	},
+	{
+		"ICAO": "VVNB",
+		"IATA": "HAN",
+		"name": "内排国际机场",
+		"city": "越南河内",
+		"timezone": "Asia/Bangkok"
+	},
+	{
+		"ICAO": "YMML",
+		"IATA": "MEL",
+		"name": "墨尔本国际机场",
+		"city": "澳大利亚墨尔本",
+		"timezone": "Australia/Melbourne"
+	},
+	{
+		"ICAO": "YSSY",
+		"IATA": "SYD",
+		"name": "悉尼国际机场",
+		"city": "澳大利亚悉尼",
+		"timezone": "Australia/Sydney"
+	},
+	{
+		"ICAO": "NZAA",
+		"IATA": "AKL",
+		"name": "奥克兰机场",
+		"city": "新西兰奥克兰",
+		"timezone": "Pacific/Auckland"
+	}
+]

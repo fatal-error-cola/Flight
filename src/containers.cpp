@@ -1,17 +1,40 @@
 #include "containers.hpp"
-#include "models.hpp"
+#include <cstddef>
+#include <utility>
+#include <algorithm>
 #include <QStandardPaths>
 #include <QFile>
-
-#include <QDebug>
+#include <QJsonDocument>
+#include <QJsonArray>
+#include <QJsonValueRef>
+#include "models.hpp"
 
 Airports::Airports() {
-	QFile file(QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation) + "/airports.csv");
-	if(!file.exists()) QFile::copy(":/default/airports.csv", file.fileName());
-	qDebug() << file.exists();
+	QFile file(QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation) + "/airports.json");
+	if(!file.exists()) QFile::copy(":/default/airports.json", file.fileName());
+	file.open(QIODevice::ReadOnly);
+	const auto data = QJsonDocument::fromJson(file.readAll()).array();
+	size_t count = 0;
+	for(auto &&item : data) {
+		Airport airport{
+			count++,
+			item["ICAO"].toString(),
+			item["IATA"].toString(),
+			item["name"].toString(),
+			item["city"].toString(),
+			QTimeZone(item["timezone"].toString().toUtf8())
+		};
+		airports.push_back(airport);
+		ICAO_map.emplace(airport.ICAO, airport.index);
+	}
+}
 
-	airports.push_back({"ZBAA", "PEK", "北京首都国际机场", "北京", QTimeZone("Asia/Shanghai")});
-	airports.push_back({"ZSPD", "PVG", "上海浦东国际机场", "上海", QTimeZone("Asia/Shanghai")});
+Airport & Airports::get(size_t index) {
+	return airports[index];
+}
+
+Airport & Airports::get(QString ICAO) {
+	return get(ICAO_map.at(ICAO));
 }
 
 int Airports::rowCount(const QModelIndex &parent) const {
@@ -25,9 +48,30 @@ QVariant Airports::data(const QModelIndex &index, int role) const {
 		case Qt::DisplayRole:
 		case Qt::EditRole: {
 			auto &&airport = airports[row];
-			return QStringList{airport.name, airport.ICAO, airport.IATA, airport.city}.join("-");
-			break;
+			return QStringList{airport.name, airport.ICAO, airport.IATA, airport.city}.join(" / ");
 		}
 	}
 	return QVariant();
+}
+
+
+Routes::Routes() {
+}
+
+size_t Routes::getNewIndex() {
+	return ++index;
+}
+
+void Routes::add(Route &&route) {
+	routes.push_back(std::move(route));
+}
+
+void Routes::remove(size_t index) {
+	routes.erase(std::lower_bound(routes.begin(), routes.end(), index,
+		[](const Route &x, size_t index) { return x.index < index; }));
+}
+
+Route & Routes::get(size_t index) {
+	return *std::lower_bound(routes.begin(), routes.end(), index,
+		[](const Route &x, size_t index) { return x.index < index; });
 }

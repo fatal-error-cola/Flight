@@ -21,18 +21,24 @@ VPATH += \
 
 HEADERS += \
 	singleton.hpp \
+	logger.hpp \
 	helpers.hpp \
 	models.hpp \
 	containers.hpp \
 	app/flightapp.hpp \
 	app/logwidget.hpp \
+	app/menu.hpp \
+	app/routewidget.hpp \
 	app/routedesigner.hpp
 
 SOURCES += \
+	logger.cpp \
 	helpers.cpp \
 	containers.cpp \
 	app/flightapp.cpp \
 	app/logwidget.cpp \
+	app/menu.cpp \
+	app/routewidget.cpp \
 	app/routedesigner.cpp \
 	main.cpp
 

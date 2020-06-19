@@ -1,8 +1,10 @@
 <RCC>
     <qresource prefix="/icons">
+        <file>delete.svg</file>
         <file>help.svg</file>
+        <file>new.svg</file>
     </qresource>
     <qresource prefix="/default">
-        <file>airports.csv</file>
+        <file>airports.json</file>
     </qresource>
 </RCC>

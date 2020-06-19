@@ -3,16 +3,19 @@
 
 #include <QFile>
 #include <QPlainTextEdit>
+#include <memory>
 
 class Logger {
 	QFile file;
 	QPlainTextEdit *editor;
 
 public:
-	explicit Logger(QObject *parent, QString fileName, QPlainTextEdit *editor);
+	explicit Logger(const QString &filename, QPlainTextEdit *editor);
 
-public slots:
 	void write(const QString &text);
 };
+
+inline std::unique_ptr<Logger> order_logger;
+inline std::unique_ptr<Logger> flight_logger;
 
 #endif

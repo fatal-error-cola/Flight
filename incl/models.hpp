@@ -2,14 +2,15 @@
 #define MODELS_HPP
 
 #include <cstddef>
+#include <vector>
 #include <QString>
 #include <QTimeZone>
 #include <QDateTime>
-#include <vector>
 #include "helpers.hpp"
 using std::size_t;
 
 struct Airport {
+	size_t index;
 	QString ICAO;
 	QString IATA;
 	QString name;
