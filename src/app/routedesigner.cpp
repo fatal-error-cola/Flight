@@ -50,7 +50,7 @@ RouteDesigner::RouteDesigner(Route *route_, QWidget *parent):
 	for(unsigned i = 0; i < Class::NUM; ++i) {
 		classes[i].tickets.setMaximum(9999);
 		classes[i].cost.setMaximum(99999);
-		classes[i].cost.setSuffix(" 元");
+		classes[i].cost.setSuffix(" \xe5\x85\x83");
 	}
 
 
