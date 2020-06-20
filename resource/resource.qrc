@@ -1,8 +1,11 @@
 <RCC>
     <qresource prefix="/icons">
-        <file>delete.svg</file>
-        <file>help.svg</file>
         <file>new.svg</file>
+        <file>delete.svg</file>
+        <file>log.svg</file>
+        <file>route.svg</file>
+        <file>flight.svg</file>
+        <file>guide.svg</file>
     </qresource>
     <qresource prefix="/default">
         <file>airports.json</file>

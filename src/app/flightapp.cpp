@@ -9,7 +9,7 @@
 
 FlightApp::FlightApp(QWidget *parent):
 		QMainWindow(parent) {
-	setWindowTitle("客户端");
+	setWindowTitle("\xe5\xae\xa2\xe6\x88\xb7\xe7\xab\xaf");
 	resize(800, 600);
 
 	auto *central_widget = new QWidget(this);
@@ -33,10 +33,14 @@ FlightApp::FlightApp(QWidget *parent):
 		}
 	)");
 
-	menu.addItem(new QListWidgetItem(QIcon(":/icons/help.svg"), "查看日志"));
-	menu.addItem(new QListWidgetItem(QIcon(":/icons/help.svg"), "设计航线"));
-	menu.addItem(new QListWidgetItem(QIcon(":/icons/help.svg"), "管理航班"));
-	menu.addItem(new QListWidgetItem(QIcon(":/icons/help.svg"), "帮助文档"));
+	menu.addItem(new QListWidgetItem(QIcon(":/icons/log.svg"),
+		"\xe6\x9f\xa5\xe7\x9c\x8b\xe6\x97\xa5\xe5\xbf\x97"));
+	menu.addItem(new QListWidgetItem(QIcon(":/icons/route.svg"),
+		"\xe8\xae\xbe\xe8\xae\xa1\xe8\x88\xaa\xe7\xba\xbf"));
+	menu.addItem(new QListWidgetItem(QIcon(":/icons/flight.svg"),
+		"\xe7\xae\xa1\xe7\x90\x86\xe8\x88\xaa\xe7\x8f\xad"));
+	menu.addItem(new QListWidgetItem(QIcon(":/icons/guide.svg"),
+		"\xe5\xb8\xae\xe5\x8a\xa9\xe6\x96\x87\xe6\xa1\xa3"));
 	menu.setFixedWidth(menu.sizeHintForColumn(0));
 	menu.setFixedHeight((menu.sizeHintForRow(0) + 5) * menu.count() + 2 * menu.frameWidth());
 
@@ -44,7 +48,7 @@ FlightApp::FlightApp(QWidget *parent):
 	widgets->addWidget(LogWidget::init());
 	widgets->addWidget(RouteWidget::init());
 	widgets->addWidget(FlightWidget::init());
-	widgets->addWidget(new QLabel("帮助文档"));
+	widgets->addWidget(new QLabel("\xe5\xb8\xae\xe5\x8a\xa9\xe6\x96\x87\xe6\xa1\xa3"));
 
 	central_layout->addWidget(&menu);
 	central_layout->addLayout(widgets);

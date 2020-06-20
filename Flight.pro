@@ -57,3 +57,5 @@ SOURCES += \
 
 RESOURCES += \
 	resource/resource.qrc
+
+ICON = flightapp.icns

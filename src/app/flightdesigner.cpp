@@ -44,7 +44,7 @@ void FlightDesigner::setUi() {
 	for(unsigned i = 0; i < Class::NUM; ++i) {
 		classes[i].tickets.setMaximum(9999);
 		classes[i].cost.setMaximum(99999);
-		classes[i].cost.setSuffix(" 元");
+		classes[i].cost.setSuffix(" \xe5\x85\x83");
 	}
 
 	transfer_discount.setMaximum(100);
@@ -55,15 +55,15 @@ void FlightDesigner::setUi() {
 
 	auto *depart_box = new QGroupBox;
 	auto *depart_layout = new QFormLayout(depart_box);
-	depart_layout->addRow("机场：", &depart.airport);
-	depart_layout->addRow("航站楼：", &depart.terminal);
-	depart_layout->addRow("当地时间：", &depart.time);
+	depart_layout->addRow("\xe6\x9c\xba\xe5\x9c\xba\xef\xbc\x9a", &depart.airport);
+	depart_layout->addRow("\xe8\x88\xaa\xe7\xab\x99\xe6\xa5\xbc\xef\xbc\x9a", &depart.terminal);
+	depart_layout->addRow("\xe5\xbd\x93\xe5\x9c\xb0\xe6\x97\xb6\xe9\x97\xb4\xef\xbc\x9a", &depart.time);
 
 	auto *arrive_box = new QGroupBox;
 	auto *arrive_layout = new QFormLayout(arrive_box);
-	arrive_layout->addRow("机场：", &arrive.airport);
-	arrive_layout->addRow("航站楼：", &arrive.terminal);
-	arrive_layout->addRow("当地时间：", &arrive.time);
+	arrive_layout->addRow("\xe6\x9c\xba\xe5\x9c\xba\xef\xbc\x9a", &arrive.airport);
+	arrive_layout->addRow("\xe8\x88\xaa\xe7\xab\x99\xe6\xa5\xbc\xef\xbc\x9a", &arrive.terminal);
+	arrive_layout->addRow("\xe5\xbd\x93\xe5\x9c\xb0\xe6\x97\xb6\xe9\x97\xb4\xef\xbc\x9a", &arrive.time);
 
 	auto *server_box = new QGroupBox;
 	auto *server_layout = new QHBoxLayout(server_box);
@@ -76,8 +76,8 @@ void FlightDesigner::setUi() {
 		auto *class_box = new QGroupBox(Class::name[i]);
 		class_box->setAlignment(Qt::AlignHCenter);
 		auto *class_layout = new QFormLayout(class_box);
-		class_layout->addRow("座位：", &classes[i].tickets);
-		class_layout->addRow("价格：", &classes[i].cost);
+		class_layout->addRow("\xe5\xba\xa7\xe4\xbd\x8d\xef\xbc\x9a", &classes[i].tickets);
+		class_layout->addRow("\xe4\xbb\xb7\xe6\xa0\xbc\xef\xbc\x9a", &classes[i].cost);
 		classes_layout->addWidget(class_box);
 	}
 
@@ -87,17 +87,17 @@ void FlightDesigner::setUi() {
 	button_layout->addWidget(buttons);
 
 	auto *first_column = new QFormLayout;
-	first_column->addRow("航班号：", &flight);
-	first_column->addRow("航司：", &airline);
-	first_column->addRow("机型：", &aircraft);
-	first_column->addRow("中转折扣：", &transfer_discount);
+	first_column->addRow("\xe8\x88\xaa\xe7\x8f\xad\xe5\x8f\xb7\xef\xbc\x9a", &flight);
+	first_column->addRow("\xe8\x88\xaa\xe5\x8f\xb8\xef\xbc\x9a", &airline);
+	first_column->addRow("\xe6\x9c\xba\xe5\x9e\x8b\xef\xbc\x9a", &aircraft);
+	first_column->addRow("\xe4\xb8\xad\xe8\xbd\xac\xe6\x8a\x98\xe6\x89\xa3\xef\xbc\x9a", &transfer_discount);
 
 	auto *second_column = new QGridLayout;
-	second_column->addWidget(new QLabel("出发："), 0, 0, Qt::AlignRight | Qt::AlignVCenter);
+	second_column->addWidget(new QLabel("\xe5\x87\xba\xe5\x8f\x91\xef\xbc\x9a"), 0, 0, Qt::AlignRight | Qt::AlignVCenter);
 	second_column->addWidget(depart_box, 0, 1, Qt::AlignLeft);
-	second_column->addWidget(new QLabel("到达："), 1, 0, Qt::AlignRight | Qt::AlignVCenter);
+	second_column->addWidget(new QLabel("\xe5\x88\xb0\xe8\xbe\xbe\xef\xbc\x9a"), 1, 0, Qt::AlignRight | Qt::AlignVCenter);
 	second_column->addWidget(arrive_box, 1, 1, Qt::AlignLeft);
-	second_column->addWidget(new QLabel("服务："), 2, 0, Qt::AlignRight | Qt::AlignVCenter);
+	second_column->addWidget(new QLabel("\xe6\x9c\x8d\xe5\x8a\xa1\xef\xbc\x9a"), 2, 0, Qt::AlignRight | Qt::AlignVCenter);
 	second_column->addWidget(server_box, 2, 1, Qt::AlignLeft);
 
 	layout->addLayout(first_column, 0, 1, Qt::AlignHCenter);

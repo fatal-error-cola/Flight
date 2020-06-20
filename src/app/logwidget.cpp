@@ -5,6 +5,6 @@ LogWidget::LogWidget(QWidget *parent):
 	order_log.setReadOnly(true);
 	flight_log.setReadOnly(true);
 
-	addTab(&order_log, "订单日志");
-	addTab(&flight_log, "航班日志");
+	addTab(&order_log, "\xe8\xae\xa2\xe5\x8d\x95\xe6\x97\xa5\xe5\xbf\x97");
+	addTab(&flight_log, "\xe8\x88\xaa\xe7\x8f\xad\xe6\x97\xa5\xe5\xbf\x97");
 }
