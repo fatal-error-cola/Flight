@@ -1,5 +1,5 @@
-#ifndef ROUTEDESIGNER_HPP
-#define ROUTEDESIGNER_HPP
+#ifndef FLIGHTDESIGNER_HPP
+#define FLIGHTDESIGNER_HPP
 
 #include <QWidget>
 #include <QLineEdit>
@@ -9,15 +9,15 @@
 #include <QCheckBox>
 #include "helpers.hpp"
 
-struct Route;
+struct FlightInfo;
+struct Flight;
 
-class RouteDesigner: public QWidget {
+class FlightDesigner: public QWidget {
 	Q_OBJECT
-	Route *route;
+	Flight *flight_object;
 	QLineEdit flight;
 	QLineEdit airline;
 	QLineEdit aircraft;
-	QSpinBox repeat;
 	struct {
 		QComboBox airport;
 		QLineEdit terminal;
@@ -31,16 +31,20 @@ class RouteDesigner: public QWidget {
 		QSpinBox tickets;
 		QSpinBox cost;
 	} classes[Class::NUM];
+	QSpinBox transfer_discount;
+
+	void setUi();
+	void setFlightInfo(FlightInfo *flight_info);
 
 private slots:
 	void apply();
 
 public:
-	explicit RouteDesigner(Route *route = nullptr, QWidget *parent = nullptr);
+	explicit FlightDesigner(FlightInfo *flight_info, QWidget *parent = nullptr);
+	explicit FlightDesigner(Flight *flight, QWidget *parent = nullptr);
 
 signals:
 	void finished();
-	void remove();
 };
 
 #endif

@@ -1,9 +1,9 @@
 #ifndef LOGGER_HPP
 #define LOGGER_HPP
 
+#include <memory>
 #include <QFile>
 #include <QPlainTextEdit>
-#include <memory>
 
 class Logger {
 	QFile file;

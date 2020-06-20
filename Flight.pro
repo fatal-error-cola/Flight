@@ -21,29 +21,39 @@ VPATH += \
 
 HEADERS += \
 	singleton.hpp \
-	logger.hpp \
 	helpers.hpp \
 	models.hpp \
 	containers.hpp \
+	logger.hpp \
+	costcalc.hpp \
+	paymodule.hpp \
+	orderplacement.hpp \
+	server.hpp \
 	app/flightapp.hpp \
 	app/logwidget.hpp \
 	app/menu.hpp \
 	app/routewidget.hpp \
-	app/routedesigner.hpp
+	app/routedesigner.hpp \
+	app/flightwidget.hpp \
+	app/flightdesigner.hpp
 
 SOURCES += \
-	logger.cpp \
 	helpers.cpp \
+	models.cpp \
 	containers.cpp \
+	logger.cpp \
+	costcalc.cpp \
+	paymodule.cpp \
+	orderplacement.cpp \
+	server.cpp \
 	app/flightapp.cpp \
 	app/logwidget.cpp \
 	app/menu.cpp \
 	app/routewidget.cpp \
 	app/routedesigner.cpp \
+	app/flightwidget.cpp \
+	app/flightdesigner.cpp \
 	main.cpp
-
-FORMS += \
-	test.ui
 
 RESOURCES += \
 	resource/resource.qrc

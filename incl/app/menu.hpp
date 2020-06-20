@@ -21,9 +21,10 @@ public slots:
 class Menu: public QScrollArea {
 	Q_OBJECT
 	QVBoxLayout *layout;
+	unsigned new_widget_index = 0;
 
 public:
-	explicit Menu(MenuItem *item, QWidget *parent = nullptr);
+	explicit Menu(MenuItem *item = nullptr, QWidget *parent = nullptr);
 
 public slots:
 	void insertItem(MenuItem *item);

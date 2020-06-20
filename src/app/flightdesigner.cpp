@@ -1,4 +1,4 @@
-#include "app/routedesigner.hpp"
+#include "app/flightdesigner.hpp"
 #include <utility>
 #include <QCompleter>
 #include <QGridLayout>
@@ -7,19 +7,13 @@
 #include <QLabel>
 #include <QPushButton>
 #include <QDialogButtonBox>
-#include "app/flightapp.hpp"
-#include "app/routewidget.hpp"
 #include "app/flightwidget.hpp"
-#include "app/flightdesigner.hpp"
 #include "helpers.hpp"
 #include "models.hpp"
 #include "containers.hpp"
+#include "logger.hpp"
 
-RouteDesigner::RouteDesigner(Route *route_, QWidget *parent):
-		QWidget(parent), route(route_) {
-	repeat.setMaximum(999);
-	repeat.setSuffix(" 天");
-
+void FlightDesigner::setUi() {
 	depart.airport.setEditable(true);
 	depart.airport.setModel(Airports::getInstance());
 	auto depart_airport_completer = new QCompleter(Airports::getInstance(), &depart.airport);
@@ -53,6 +47,9 @@ RouteDesigner::RouteDesigner(Route *route_, QWidget *parent):
 		classes[i].cost.setSuffix(" 元");
 	}
 
+	transfer_discount.setMaximum(100);
+	transfer_discount.setSuffix("%");
+
 
 	auto *layout = new QGridLayout(this);
 
@@ -85,26 +82,6 @@ RouteDesigner::RouteDesigner(Route *route_, QWidget *parent):
 	}
 
 	auto *button_layout = new QHBoxLayout;
-
-	if(route != nullptr) {
-		auto *submit_button = new QPushButton("发布");
-		submit_button->setFixedSize(80, 32);
-		button_layout->addWidget(submit_button);
-		connect(submit_button, &QPushButton::clicked, [this] {
-			auto *designer = new FlightDesigner(&route->info);
-			FlightWidget::getInstance()->addWidget(designer);
-			FlightWidget::getInstance()->setCurrentWidget(designer);
-			FlightApp::getInstance()->menu.setCurrentRow(2);
-			if(route->repeat == 0) emit remove();
-			else {
-				route->info.depart.time = route->info.depart.time.addDays(route->repeat);
-				route->info.arrive.time = route->info.arrive.time.addDays(route->repeat);
-				emit finished();
-			}
-			deleteLater();
-		});
-	}
-
 	auto *buttons = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
 	button_layout->addItem(new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Minimum));
 	button_layout->addWidget(buttons);
@@ -113,7 +90,7 @@ RouteDesigner::RouteDesigner(Route *route_, QWidget *parent):
 	first_column->addRow("航班号：", &flight);
 	first_column->addRow("航司：", &airline);
 	first_column->addRow("机型：", &aircraft);
-	first_column->addRow("周期：", &repeat);
+	first_column->addRow("中转折扣：", &transfer_discount);
 
 	auto *second_column = new QGridLayout;
 	second_column->addWidget(new QLabel("出发："), 0, 0, Qt::AlignRight | Qt::AlignVCenter);
@@ -131,63 +108,99 @@ RouteDesigner::RouteDesigner(Route *route_, QWidget *parent):
 	layout->addItem(new QSpacerItem(0, 0, QSizePolicy::Minimum, QSizePolicy::Expanding), 2, 1, 1, 2);
 	layout->addLayout(button_layout, 3, 1, 1, 2);
 
-	if(route != nullptr) {
-		flight.setText(route->info.flight);
-		airline.setText(route->info.airline);
-		aircraft.setText(route->info.aircraft);
-		repeat.setValue(route->repeat);
-		depart.airport.setCurrentIndex(route->info.depart.airport->index);
-		depart.terminal.setText(route->info.depart.terminal);
-		depart.time.setDateTime(route->info.depart.time);
-		arrive.airport.setCurrentIndex(route->info.arrive.airport->index);
-		arrive.terminal.setText(route->info.depart.terminal);
-		arrive.time.setDateTime(route->info.depart.time);
-		for(unsigned i = 0; i < Server::Meal::NUM; ++i)
-			server.meal[i].setChecked(route->info.server.meal & 1 << i);
-		server.hasWiFi.setChecked(route->info.server.hasWiFi);
-		for(unsigned i = 0; i < Class::NUM; ++i) {
-			classes[i].tickets.setValue(route->info.classes[i].tickets);
-			classes[i].cost.setValue(route->info.classes[i].cost);
-		}
-	}
-
 	connect(buttons, &QDialogButtonBox::rejected, this, &QObject::deleteLater);
-	connect(buttons, &QDialogButtonBox::accepted, this, &RouteDesigner::apply);
+	connect(buttons, &QDialogButtonBox::accepted, this, &FlightDesigner::apply);
 }
 
-void RouteDesigner::apply() {
-	bool new_route = route == nullptr;
-	if(new_route) {
-		route = new Route;
-		route->index = Routes::getInstance()->getNewIndex();
-	}
-	route->info.flight = flight.text();
-	route->info.airline = airline.text();
-	route->info.aircraft = aircraft.text();
-	route->repeat = repeat.value();
-	route->info.depart.airport = Airports::getInstance()->get(depart.airport.currentIndex());
-	route->info.depart.terminal = depart.terminal.text();
-	route->info.depart.time = depart.time.dateTime();
-	route->info.depart.time.setTimeZone(route->info.depart.airport->time_zone);
-	route->info.arrive.airport = Airports::getInstance()->get(arrive.airport.currentIndex());
-	route->info.arrive.terminal = arrive.terminal.text();
-	route->info.arrive.time = arrive.time.dateTime();
-	route->info.arrive.time.setTimeZone(route->info.arrive.airport->time_zone);
-	route->info.server.meal = 0;
+void FlightDesigner::setFlightInfo(FlightInfo *flight_info) {
+	flight.setText(flight_info->flight);
+	airline.setText(flight_info->airline);
+	aircraft.setText(flight_info->aircraft);
+	depart.airport.setCurrentIndex(flight_info->depart.airport->index);
+	depart.terminal.setText(flight_info->depart.terminal);
+	depart.time.setDateTime(flight_info->depart.time);
+	arrive.airport.setCurrentIndex(flight_info->arrive.airport->index);
+	arrive.terminal.setText(flight_info->depart.terminal);
+	arrive.time.setDateTime(flight_info->depart.time);
 	for(unsigned i = 0; i < Server::Meal::NUM; ++i)
-		if(server.meal[i].isChecked())
-			route->info.server.meal |= 1 << i;
-	route->info.server.hasWiFi = server.hasWiFi.isChecked();
+		server.meal[i].setChecked(flight_info->server.meal & 1 << i);
+	server.hasWiFi.setChecked(flight_info->server.hasWiFi);
 	for(unsigned i = 0; i < Class::NUM; ++i) {
-		route->info.classes[i].tickets = classes[i].tickets.value();
-		route->info.classes[i].cost = classes[i].cost.value();
+		classes[i].tickets.setValue(flight_info->classes[i].tickets);
+		classes[i].cost.setValue(flight_info->classes[i].cost);
 	}
-	if(!new_route) emit finished();
+}
+
+FlightDesigner::FlightDesigner(FlightInfo *flight_info, QWidget *parent):
+		QWidget(parent), flight_object(nullptr) {
+	setUi();
+	setFlightInfo(flight_info);
+	transfer_discount.setValue(100);
+}
+
+FlightDesigner::FlightDesigner(Flight *flight_, QWidget *parent):
+		QWidget(parent), flight_object(flight_) {
+	setUi();
+	setFlightInfo(&flight_object->info);
+	transfer_discount.setValue(flight_object->transfer_discount);
+
+	flight.setDisabled(true);
+	airline.setDisabled(true);
+	aircraft.setDisabled(true);
+	depart.airport.setDisabled(true);
+	depart.terminal.setDisabled(true);
+	depart.time.setDisabled(true);
+	arrive.airport.setDisabled(true);
+	arrive.terminal.setDisabled(true);
+	arrive.time.setDisabled(true);
+	for(unsigned i = 0; i < Server::Meal::NUM; ++i)
+		server.meal[i].setDisabled(true);
+	server.hasWiFi.setDisabled(true);
+	for(unsigned i = 0; i < Class::NUM; ++i)
+		classes[i].tickets.setDisabled(true);
+}
+
+void FlightDesigner::apply() {
+	bool new_flight = flight_object == nullptr;
+	if(new_flight) {
+		flight_object = new Flight;
+		flight_object->index = Flights::getInstance()->getNewIndex();
+
+		flight_object->info.flight = flight.text();
+		flight_object->info.airline = airline.text();
+		flight_object->info.aircraft = aircraft.text();
+		flight_object->info.depart.airport = Airports::getInstance()->get(depart.airport.currentIndex());
+		flight_object->info.depart.terminal = depart.terminal.text();
+		flight_object->info.depart.time = depart.time.dateTime();
+		flight_object->info.depart.time.setTimeZone(flight_object->info.depart.airport->time_zone);
+		flight_object->info.arrive.airport = Airports::getInstance()->get(arrive.airport.currentIndex());
+		flight_object->info.arrive.terminal = arrive.terminal.text();
+		flight_object->info.arrive.time = arrive.time.dateTime();
+		flight_object->info.arrive.time.setTimeZone(flight_object->info.arrive.airport->time_zone);
+		flight_object->info.server.meal = 0;
+		for(unsigned i = 0; i < Server::Meal::NUM; ++i)
+			if(server.meal[i].isChecked())
+				flight_object->info.server.meal |= 1 << i;
+		flight_object->info.server.hasWiFi = server.hasWiFi.isChecked();
+		for(unsigned i = 0; i < Class::NUM; ++i)
+			flight_object->info.classes[i].tickets = classes[i].tickets.value();
+	}
+
+	for(unsigned i = 0; i < Class::NUM; ++i)
+		flight_object->info.classes[i].cost = classes[i].cost.value();
+	flight_object->transfer_discount = transfer_discount.value();
+
+	if(!new_flight) emit finished();
 	else {
-		unsigned index = route->index;
-		Routes::getInstance()->add(std::move(*route));
-		RouteWidget::getInstance()->menu.insertItem(new RouteMenuItem(index));
-		delete route;
+		unsigned index = flight_object->index;
+		flight_logger->write(
+			QString("flight %1 (index %2) is now online")
+				.arg(flight_object->info.flight)
+				.arg(index)
+		);
+		Flights::getInstance()->add(std::move(*flight_object));
+		FlightWidget::getInstance()->menu.insertItem(new FlightMenuItem(index));
+		delete flight_object;
 	}
 	deleteLater();
 }

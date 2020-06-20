@@ -2,7 +2,8 @@
 #include <QHBoxLayout>
 #include <QLabel>
 
-MenuItem::MenuItem(QWidget *parent): QGroupBox(parent) {
+MenuItem::MenuItem(QWidget *parent):
+		QGroupBox(parent) {
 	setFixedHeight(80);
 	setStyleSheet(R"(
 		QGroupBox {
@@ -25,16 +26,17 @@ void MenuItem::setNewItemUi() {
 	layout->addWidget(plus, 0, Qt::AlignCenter);
 }
 
-Menu::Menu(MenuItem *item, QWidget *parent): QScrollArea(parent) {
+Menu::Menu(MenuItem *item, QWidget *parent):
+		QScrollArea(parent) {
 	setFrameShape(QFrame::NoFrame);
 	setWidgetResizable(true);
 	auto *inner = new QWidget;
 	layout = new QVBoxLayout(inner);
-	layout->addWidget(item);
+	if(item) { layout->addWidget(item); new_widget_index = 1; }
 	layout->addItem(new QSpacerItem(0, 0, QSizePolicy::Minimum, QSizePolicy::Expanding));
 	setWidget(inner);
 }
 
 void Menu::insertItem(MenuItem *item) {
-	layout->insertWidget(1, item);
+	layout->insertWidget(new_widget_index, item);
 }

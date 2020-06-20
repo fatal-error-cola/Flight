@@ -4,7 +4,7 @@
 
 Logger::Logger(const QString &filename, QPlainTextEdit *editor_):
 		file(filename), editor(editor_) {
-	file.open(QIODevice::Append | QIODevice::Text);
+	file.open(QIODevice::WriteOnly | QIODevice::Append | QIODevice::Text);
 }
 
 void Logger::write(const QString &text) {
@@ -12,6 +12,5 @@ void Logger::write(const QString &text) {
 	QTextStream out(&file);
 	out.setCodec("UTF-8");
 	out << prefix << text << Qt::endl;
-	editor->appendHtml("<font color=\"red\">" + prefix + "</font>");
-	editor->appendPlainText(text);
+	editor->appendHtml("<font color=\"green\">" + prefix.toHtmlEscaped() + "</font>" + text.toHtmlEscaped());
 }

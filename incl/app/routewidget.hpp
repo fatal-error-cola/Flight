@@ -1,26 +1,25 @@
 #ifndef ROUTEWIDGET_HPP
 #define ROUTEWIDGET_HPP
 
-#include <cstddef>
 #include <QStackedWidget>
 #include "singleton.hpp"
 #include "menu.hpp"
-using std::size_t;
 
 struct Route;
 
 class RouteMenuItem: public MenuItem {
 	Q_OBJECT
-	size_t index;
+	unsigned index;
 
 protected:
 	void mouseReleaseEvent(QMouseEvent *event) override;
 
 public:
-	RouteMenuItem(size_t index = 0, QWidget *parent = nullptr);
+	RouteMenuItem(unsigned index = 0, QWidget *parent = nullptr);
 
 public slots:
 	void setUi() override;
+	void remove();
 };
 
 class RouteWidget: public QStackedWidget, public Singleton<RouteWidget> {

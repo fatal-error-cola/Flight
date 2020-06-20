@@ -2,7 +2,7 @@
 #define FLIGHTAPP_HPP
 
 #include <QMainWindow>
-#include <QWidget>
+#include <QListWidget>
 #include "singleton.hpp"
 
 class FlightApp: public QMainWindow, public Singleton<FlightApp> {
@@ -10,6 +10,9 @@ class FlightApp: public QMainWindow, public Singleton<FlightApp> {
 
 	friend class Singleton<FlightApp>;
 	explicit FlightApp(QWidget *parent = nullptr);
+
+public:
+	QListWidget menu;
 };
 
 #endif

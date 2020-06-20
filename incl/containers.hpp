@@ -1,27 +1,26 @@
-#ifndef CONTAINER_HPP
-#define CONTAINER_HPP
+#ifndef CONTAINERS_HPP
+#define CONTAINERS_HPP
 
-#include <cstddef>
 #include <vector>
 #include <map>
 #include <QString>
 #include <QAbstractListModel>
-#include <QAbstractTableModel>
 #include "singleton.hpp"
-using std::size_t;
 
 struct Airport;
 
 class Airports: public QAbstractListModel, public Singleton<Airports> {
+	Q_OBJECT
 	std::vector<Airport> airports;
-	std::map<QString, size_t> ICAO_map;
+	std::map<QString, unsigned> ICAO_map;
 
 	friend class Singleton<Airports>;
 	Airports();
 
 public:
-	Airport & get(size_t index);
-	Airport & get(QString ICAO);
+	~Airports();
+	Airport * get(unsigned index);
+	Airport * get(QString ICAO);
 
 	int rowCount(const QModelIndex &parent = QModelIndex()) const override;
 	QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
@@ -30,17 +29,50 @@ public:
 struct Route;
 
 class Routes: public Singleton<Routes> {
-	size_t index = 0;
+	unsigned index = 0;
 	std::vector<Route> routes;
 
 	friend class Singleton<Routes>;
 	Routes();
 
 public:
-	size_t getNewIndex();
+	~Routes();
+	unsigned getNewIndex();
 	void add(Route &&route);
-	void remove(size_t index);
-	Route & get(size_t index);
+	void remove(unsigned index);
+	Route * get(unsigned index);
+};
+
+struct Flight;
+
+class Flights: public Singleton<Flights> {
+	unsigned index = 0;
+	std::vector<Flight> flights;
+
+	friend class Singleton<Flights>;
+	Flights();
+
+public:
+	~Flights();
+	unsigned getNewIndex();
+	void add(Flight &&flight);
+	Flight * get(unsigned index);
+};
+
+struct Order;
+
+class Orders: public Singleton<Orders> {
+	unsigned index = 0;
+	std::vector<Order> orders;
+
+	friend class Singleton<Orders>;
+	Orders();
+
+public:
+	~Orders();
+	unsigned getNewIndex();
+	void add(Order &&order);
+	Order * get(unsigned index);
 };
 
 #endif

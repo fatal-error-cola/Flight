@@ -2,13 +2,11 @@
 // 查询航班
 {
 	"type": 0,
-	"depart": "北京",
-	"arrive": "上海",
-	"time": "2020/09/30",
-	"tickets": {
-		"adult": 1,
-		"children": 0
-	}
+	"depart": { "city": "北京" },
+	"arrive": { "city": "上海" },
+	"date": "2020/09/30",
+	"tickets": 1,
+	"prefer_class": 0
 }
 // 返回航班
 [

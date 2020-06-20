@@ -1,7 +1,7 @@
 #ifndef HELPERS_HPP
 #define HELPERS_HPP
 
-#include <QStringList>
+#include <QString>
 
 namespace Class {
 	enum Type {
@@ -11,12 +11,12 @@ namespace Class {
 		First,
 		NUM
 	};
-	extern QStringList name;
+	extern QString name[NUM];
 }
 
 namespace Server {
 	namespace Meal {
-		constexpr int NUM = 4;
+		constexpr unsigned NUM = 4;
 		enum Type {
 			None = 0x0,
 			Breakfast = 0x1,
@@ -24,7 +24,7 @@ namespace Server {
 			Supper = 0x4,
 			Snack = 0x8
 		};
-		extern QStringList name;
+		extern QString name[NUM];
 	}
 }
 
