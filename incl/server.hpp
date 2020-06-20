@@ -16,7 +16,7 @@ public:
 	~TcpServer();
 };
 
-enum RequestType { FindPath, Pay, GetOrder };
+enum RequestType { FindPath = 0, Pay = 1, GetOrder = 2 };
 
 class SocketHandler: public QObject {
 	Q_OBJECT

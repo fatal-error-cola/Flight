@@ -81,9 +81,19 @@ OrderInfo::OrderInfo(const QJsonObject &json) {
 // }
 
 QJsonObject Order::toJson() const {
+	QJsonArray flights_json;
+	for(auto &&[flight_no, class_type] : info.flights) {
+		auto *flight = Flights::getInstance()->get(flight_no);
+		auto info = flight->info.toJson();
+		info["class"] = static_cast<int>(class_type);
+		flights_json.append(std::move(info));
+	}
 	return {
+		{"cost", cost},
 		{"tickets", QJsonObject({
 			{"adults", static_cast<int>(info.adults.size())},
-			{"children", static_cast<int>(info.children.size())}})}
+			{"children", static_cast<int>(info.children.size())}})},
+		{"flights", std::move(flights_json)},
+		{"can_cancel", can_cancel}
 	};
 }

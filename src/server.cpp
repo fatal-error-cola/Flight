@@ -58,6 +58,7 @@ void SocketHandler::solve(const QByteArray &bytearray) {
 			break;
 		}
 		case GetOrder: {
+			write(QJsonDocument(Orders::getInstance()->get(data["index"].toInt())->toJson()).toJson());
 			break;
 		}
 	}
