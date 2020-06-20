@@ -42,7 +42,11 @@ FlightApp::FlightApp(QWidget *parent):
 	menu.addItem(new QListWidgetItem(QIcon(":/icons/guide.svg"),
 		"\xe5\xb8\xae\xe5\x8a\xa9\xe6\x96\x87\xe6\xa1\xa3"));
 	menu.setFixedWidth(menu.sizeHintForColumn(0));
-	menu.setFixedHeight((menu.sizeHintForRow(0) + 5) * menu.count() + 2 * menu.frameWidth());
+	menu.setMinimumHeight((menu.sizeHintForRow(0) + 10) * menu.count() + 2 * menu.frameWidth());
+	QPalette palette;
+	palette.setColor(QPalette::Highlight, menu.palette().color(QPalette::Base));
+	palette.setColor(QPalette::HighlightedText, menu.palette().color(QPalette::Text));
+	menu.setPalette(palette);
 
 	auto *widgets = new QStackedLayout;
 	widgets->addWidget(LogWidget::init());
